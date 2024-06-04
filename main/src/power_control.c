@@ -235,11 +235,11 @@ static void battery_storage_update(void) {
 }
 
 static void power_control_update(void *arg) {
-	bool power_switch_state = gpio_get_level(GPIO_POWER_ON) || power_control.ignore_power_switch;
+	bool power_switch_state = gpio_get_level(GPIO_POWER_ON);
 	debounce_bool_update(&power_control.power_switch_debounce, power_switch_state);
 	switch (power_control.power_state) {
 	case POWER_STATE_ON:
-		if (debounce_bool_get_value(&power_control.power_switch_debounce) == DEBOUNCE_FALSE) {
+		if (debounce_bool_get_value(&power_control.power_switch_debounce) == DEBOUNCE_TRUE) {
 			debounce_bool_reset(&power_control.power_good_debounce);
 			power_control.power_state = POWER_STATE_SOFT_OFF;
 		}
