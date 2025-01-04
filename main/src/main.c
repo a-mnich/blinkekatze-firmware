@@ -354,7 +354,7 @@ void app_main(void) {
 
 	shell_init(&bonk);
 
-	unsigned loop_interval_ms = 20;
+	unsigned loop_interval_ms = 50;
 	bool transaction_pending = false;
 	uint64_t loops = 0;
 	scheduler_task_init(&led_upate_task);
