@@ -353,8 +353,8 @@ esp_err_t power_control_init(bq24295_t *charger, bq27546_t *gauge) {
 	power_control.battery_discharge_soc = DEFAULT_BATTERY_DISCHARGE_SOC;
 	power_control.power_state = POWER_STATE_ON;
 	power_control.battery_storage_state = BATTERY_STORAGE_STATE_CHARGING;
-	debounce_bool_init(&power_control.power_switch_debounce, 3);
-	debounce_bool_init(&power_control.power_good_debounce, 5);
+	debounce_bool_init(&power_control.power_switch_debounce, 5);
+	debounce_bool_init(&power_control.power_good_debounce, 7);
 
 	scheduler_task_init(&power_control.update_task);
 	scheduler_schedule_task_relative(&power_control.update_task, power_control_update, NULL, MS_TO_US(100));
